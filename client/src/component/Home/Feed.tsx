@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
-import { Header } from "../Header/Header";
+
 import { LeftSideBar } from "../Points/LeftSideBar";
 import { Main } from "../Points/Main/Main";
 import { RIghtSideBar } from "../Points/RIghtSideBar";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { setUser } from "@/redux/userSlice";
+import { setUser } from "../../redux/userSlice";
+import { AppLayout } from "../../shared/Applayout";
 
-export const Feed = () => {
+
+
+   const Feed : React.FC<any> = () => {
   const [profile, setProfile] = React.useState({});
 
   const dispatch = useDispatch();
@@ -17,6 +20,7 @@ export const Feed = () => {
       try {
         const res = await axios.get("http://localhost:8080/api/user/profile", { withCredentials: true });
         setProfile(res.data.transformedUser);
+        dispatch(setUser({userProfile: profile}))
       } catch (err) {
         console.log(err);
       }
@@ -26,7 +30,6 @@ export const Feed = () => {
     fetchProfile();
   }, []);
   
-  dispatch(setUser({userProfile: profile}))
 
   return (
     <div className=" w-full h-screen">
@@ -38,3 +41,6 @@ export const Feed = () => {
     </div>
   );
 };
+
+
+export default AppLayout(Feed);

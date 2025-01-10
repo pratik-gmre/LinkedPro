@@ -7,6 +7,8 @@ interface ProtectedRouteProps{
 
 
 export const ProtectedRoute = ({user,redirect='/login'}:ProtectedRouteProps)=>{
+    console.log(user);
+    
 
     return user ? <Outlet /> : <Navigate to={redirect} />
      

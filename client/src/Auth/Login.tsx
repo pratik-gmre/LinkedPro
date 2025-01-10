@@ -1,36 +1,35 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const Login = () => {
-  const [email,setEmail] = React.useState("")
-  const [password,setPassword] = React.useState("")
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-const handleSubmit = async(e:React.FormEvent<HTMLFormElement>)=>{ 
-  e.preventDefault()
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  try {
-    const response = await axios.post("http://localhost:8080/api/auth/login", {
-      email,
-      password
-    },{withCredentials:true})
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
 
-    console.log(response.data);
-    if(response.status === 200){
-      navigate("/feed")
+      console.log(response.data);
+      if (response.status === 200) {
+        toast.success("Login successful")
+      }
+    } catch (error) {
+      console.log(error);
     }
-    
-  } catch (error) {
-    console.log(error);
-    
-    
-  }
-  
-}
-
-
+  };
 
   return (
     <div className="bg-white">
@@ -51,33 +50,32 @@ const handleSubmit = async(e:React.FormEvent<HTMLFormElement>)=>{
             </h1>
           </div>
           <form onSubmit={handleSubmit}>
-          <div className="border p-4 border-black">
-          <input
-    className="border-none w-full h-full focus:outline-none focus:border-2 focus:border-blue-600 placeholder:text-lg"
-    type="email"
-    placeholder="Email"
-    value={email}
-    onChange={(e)=>setEmail(e.target.value)}
-  />
-          </div>
-          <div className="border p-4 border-black">
-          <input
-    className="border-none w-full h-full focus:outline-none focus:border-2 focus:border-blue-600 placeholder:text-lg"
-    type="password"
-    placeholder="Password"
-    value={password}
-    onChange={(e)=>setPassword(e.target.value)}
-    
-  />
-          </div>
-          <div className="text-blue-600 font-semibold ">
-            <span className="hover:cursor-pointer hover:underline">
-              Forget Password ?
-            </span>
-          </div>
-          <div className="p-5 flex items-center justify-center border text-white hover:cursor-pointer hover:bg-blue-700 rounded-full bg-blue-600 tex">
-            <button type="submit">Sign in</button>
-          </div>
+            <div className="border p-4 border-black">
+              <input
+                className="border-none w-full h-full focus:outline-none focus:border-2 focus:border-blue-600 placeholder:text-lg"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="border p-4 border-black">
+              <input
+                className="border-none w-full h-full focus:outline-none focus:border-2 focus:border-blue-600 placeholder:text-lg"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="text-blue-600 font-semibold ">
+              <span className="hover:cursor-pointer hover:underline">
+                Forget Password ?
+              </span>
+            </div>
+            <div className="p-5 flex items-center justify-center border text-white hover:cursor-pointer hover:bg-blue-700 rounded-full bg-blue-600 tex">
+              <button type="submit">Sign in</button>
+            </div>
           </form>
           <hr />
           <div className="flex items-center justify-center space-x-2 border p-4 rounded-full border-black">
@@ -92,7 +90,10 @@ const handleSubmit = async(e:React.FormEvent<HTMLFormElement>)=>{
         </div>
         <div className="flex  items-center justify-center mt-3 p-3">
           <h1>New to LinkedIn ?</h1>
-          <button onClick={()=>(navigate("/signup"))} className="text-blue-600 font-semibold hover:underline hover:cursor-pointer ">
+          <button
+            onClick={() => navigate("/signup")}
+            className="text-blue-600 font-semibold hover:underline hover:cursor-pointer "
+          >
             Join now
           </button>
         </div>

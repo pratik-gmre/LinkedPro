@@ -1,11 +1,12 @@
-import React from 'react'
-import { Header } from '../Header'
+
+
 import { LeftNetwork } from './LeftNetwork'
 import { MainNetwork } from './MainNetwork'
+import { AppLayout } from '../../../shared/Applayout'
 
 
 
-export const MyNetwork = () => {
+ const MyNetwork = () => {
   return (
     <>
 
@@ -19,3 +20,5 @@ export const MyNetwork = () => {
     </>
   )
 }
+
+export default AppLayout(MyNetwork)

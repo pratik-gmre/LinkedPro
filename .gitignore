@@ -1,0 +1,40 @@
+# Node modules
+/node_modules/
+
+# Build output
+/dist/
+/.build/
+
+# Dependency directories
+/.pnp/
+/.pnp.js
+
+# TypeScript output
+/tsconfig.tsbuildinfo
+
+# VSCode settings
+.vscode/
+
+# Logs
+*.log
+dist/**/*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Test coverage
+/coverage/
+
+# MacOS system files
+.DS_Store
+
+# NPM package lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Other OS-specific files
+Thumbs.db
+ehthumbs.db
